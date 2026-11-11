@@ -6,8 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>C.F. Adolfo Ferreira de Carvalho</title>
 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-
   <style>
     * { box-sizing: border-box; }
 
@@ -23,14 +21,14 @@
       color: #26374a;
     }
 
-    .login-card {
+    .card {
       width: 100%;
-      max-width: 430px;
-      padding: 38px 28px;
+      max-width: 440px;
+      padding: 40px 28px;
       text-align: center;
-      background: #fff;
+      background: white;
       border-radius: 18px;
-      box-shadow: 0 12px 40px rgba(20, 50, 80, .10);
+      box-shadow: 0 12px 40px rgba(20,50,80,.10);
     }
 
     .logo {
@@ -48,9 +46,9 @@
     }
 
     h1 {
-      margin: 0 0 12px;
       color: #153d66;
       font-size: 21px;
+      margin-bottom: 12px;
     }
 
     p {
@@ -59,18 +57,21 @@
       line-height: 1.6;
     }
 
-    #googleButton {
-      display: flex;
-      justify-content: center;
-      margin-top: 28px;
-      min-height: 42px;
+    .acessar {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 15px 28px;
+      border-radius: 9px;
+      background: #287bc7;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background .2s;
     }
 
-    #mensagem {
-      margin-top: 20px;
-      font-size: 12px;
-      line-height: 1.5;
-      overflow-wrap: anywhere;
+    .acessar:hover {
+      background: #155b9b;
     }
 
     .rodape {
@@ -82,62 +83,25 @@
 </head>
 
 <body>
-  <main class="login-card">
+  <main class="card">
     <div class="logo">+</div>
 
     <h1>C.F. Adolfo Ferreira de Carvalho</h1>
 
     <p>Sistema interno de gestão de solicitações</p>
-    <p>Entre utilizando sua conta Google autorizada.</p>
+    <p>Acesse a plataforma para consultar e gerenciar as solicitações.</p>
 
-    <div id="googleButton"></div>
-    <div id="mensagem" role="status"></div>
+    <a
+      class="acessar"
+      href="https://script.google.com/macros/s/AKfycbzNj8IiposGRpuYNfPdxPuHAELXkV1hGFwkk-2H8XqdlwIKpMWKpu7MRSX-iZSx6hdx/exec"
+      target="_blank"
+      rel="noopener noreferrer">
+      ACESSAR SISTEMA
+    </a>
 
     <div class="rodape">
       Acesso restrito aos profissionais autorizados
     </div>
   </main>
-
-  <script>
-    const CLIENT_ID =
-      '297472151826-cn629paqafmt18sj7it5sivm5hbp5olk.apps.googleusercontent.com';
-
-    function iniciarLogin() {
-      if (!window.google || !google.accounts) {
-        document.getElementById('mensagem').textContent =
-          'Carregando autenticação Google. Atualize a página em alguns segundos.';
-        return;
-      }
-
-      google.accounts.id.initialize({
-        client_id: CLIENT_ID,
-        callback: receberCredencial
-      });
-
-      google.accounts.id.renderButton(
-        document.getElementById('googleButton'),
-        {
-          theme: 'outline',
-          size: 'large',
-          shape: 'rectangular',
-          text: 'signin_with',
-          width: 280
-        }
-      );
-    }
-
-    function receberCredencial(resposta) {
-      const mensagem = document.getElementById('mensagem');
-
-      mensagem.style.color = '#71849a';
-      mensagem.textContent =
-        'Credencial recebida. A integração com o servidor será realizada na próxima etapa.';
-
-      // Não armazenamos nem transmitimos o token nesta etapa.
-      console.log('Login Google iniciado.');
-    }
-
-    window.addEventListener('load', iniciarLogin);
-  </script>
 </body>
 </html>
